@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="lib/leaflet-1.9.4/leaflet.css">
+
+    <!-- Leaflet-sidebar-v2 CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-sidebar-v2/css/leaflet-sidebar.min.css" />
+    <!-- Font Awesome para los iconos -->
+    <link rel="stylesheet" href="css/fontawesome-free-6.7.2-web/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+<body>
+    <div id="map"></div>
+    <!-- Definimos el contenedor del sidebar-->
+
+    <div id = "sidebar" class = "leaflet-sidebar collapsed">
+      <!-- Contenedor de las pestañas -->
+     <div class = "leaflet-sidebar-tabs">
+        <!-- Pestañas en la parte superior -->
+      <ul role = "tablist">
+            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+            <li><a href="#profile" role="tab"><i class="fa fa-users"></i></a></li>
+        </ul>
+
+        <!-- Pestañas en la parte inferior -->
+        <ul role="tablist">
+          <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+        </ul>
+
+     </div> 
+     <!-- Paneles de contenido-->
+      <div class = "leaflet-sidebar-content">
+        <div class = "leaflet-sidebar-pane" id = "home">
+            <h1 class = "leaflet-sidebar-header">
+                Distritos Coto Brus
+                <span class = "leaflet-sidebar-close"><i class ="fa fa-caret-left"></i></span>
+            </h1>
+            <div class = "sidebar-content">
+                <button id = "zoomToPittier" class = "btn">Pittier</button>
+            </div>
+            <div class = "sidebar-content">
+                <button id = "zoomToSabalito" class = "btn">Sabalito</button>
+            </div>
+            <div class = "sidebar-content">
+                <button id = "zoomToCenter" class = "btn">San Vito</button>
+            </div>
+            <div class = "sidebar-content">
+                <button id = "zoomToLimoncito" class = "btn">Limoncito</button>
+            </div>
+            <div class = "sidebar-content">
+                <button id = "zoomToAguaBuena" class = "btn">Agua Buena</button>
+            </div>
+            <div class = "sidebar-content">
+                <button id = "zoomToGutierrezBraun" class = "btn">Gutierrez Braun</button>
+            </div>
+        </div>
+        <div class = "leaflet-sidebar-pane" id = "profile">
+            <h1 class = "leaflet-sidebar-header">
+                Lugares turisticos
+                <span class = "leaflet-sidebar-close"><i class ="fa fa-caret-left"></i></span>
+            </h1>
+            <div class = "sidebar-content">
+                <button class="accordion">Principales lugares turísticos de Coto Brus</button>
+                <div class="panel">
+                    <h4>San Vito</h4>
+                    <ul id = "tourist-sanvito">
+                        <li data-lat = "8.819931" data-lng = "-82.971121" data-slogan = "Parque central de San Vito">Parque San Vito</li>
+                        <li data-lat = "8.824851" data-lng = "-82.973045" data-slogan = "!!!!">Campo ferial San Vito</li>
+                        <li data-lat = "8.820253" data-lng = "-82.963537" data-slogan = "!!!!">Mirador San Vito</li>
+                        <li data-lat = "8.801189" data-lng = "-82.966224" data-slogan = "!!!!">Bosque el Micelio</li>
+                    </ul>
+                    <h4>Sabalito</h4>
+                    <ul id = "tourist-sabalito">
+                        <li data-lat = "8.891878" data-lng = "-82.760158" data-slogan = "!!!!">Finca Palo Hueco</li>
+                    </ul>
+                    <h4>Gutierrez Braun</h4>
+                    <ul id = "tourist-gutierrezbraun">
+                        <li data-lat = "8.886619" data-lng = "-82.921311" data-slogan = "!!!!">Trapiche Artavia</li>
+                    </ul>
+                    <h4>Agua Buena</h4>
+                    <ul id = "tourist-aguabuena">
+                        <li data-lat = "8.748922" data-lng = "-82.943869" data-slogan = "!!!!">Redondel Agua Buena</li>
+                    </ul>
+                    <h4>Pittier</h4>
+                    <ul id = "tourist-pittier">
+                        <li data-lat = "9.023496" data-lng = "-82.959091" data-slogan = "!!!!">Puesto Santa Maria de Pittier</li>
+                    </ul>
+                    <h4>Limoncito</h4>
+                    <ul id = "tourist-limoncito">
+                        <li data-lat = "8.842815" data-lng = "-83.025458" data-slogan = "!!!!">Quesos Juan</li>
+                    </ul>
+                </div>
+            </div>
+            <div class = "sidebar-content">
+                <button class="accordion">Restaurantes</button>
+                <div class="panel">
+                    <h4>San Vito</h4>
+                    <ul id = "restaurant-sanvito">
+                        <li data-lat = "8.801499" data-lng = "-82.968547" data-slogan = "Los Mejores cortes de la zona">Canto del Bosque</li>
+                        <li data-lat = "8.832335" data-lng = "-82.954247" data-slogan = "!!!!">Kuki's Food</li>
+                        <li data-lat = "8.826918" data-lng = "-82.944270" data-slogan = "!!!!">Coffe Rain</li>
+                        <li data-lat = "8.819600" data-lng = "-82.970609" data-slogan = "!!!!">La Riviera</li>
+                    </ul>
+                    <h4>Sabalito</h4>
+                    <ul id = "restaurant-sabalito">
+                        <li data-lat = "8.823986" data-lng = "-82.920835" data-slogan = "!!!!">La Casa Italiana Ristorante</li>
+                        <li data-lat = "8.823590" data-lng = "-82.921251" data-slogan = "!!!!">Antojitos Valpani</li>
+                        <li data-lat = "8.823720" data-lng = "-82.923486" data-slogan = "!!!!">Restaurante Don Conchito</li>
+                        <li data-lat = "8.819602973443965" data-lng = "-82.91291824857613" data-slogan = "!!!!">Restaurante Wen Sun</li>
+                    </ul>
+                    <h4>Gutierrez Braun</h4>
+                    <ul id = "restaurant-gutierrezbraun">
+                        <li data-lat = "8.909114" data-lng = "-82.906827" data-slogan = "!!!!">Finca Don Efra</li>
+                    </ul>
+                    <h4>Agua Buena</h4>
+                    <ul id = "restaurant-aguabuena">
+                        <li data-lat = "8.744655629242072" data-lng = "-82.94763368559676" data-slogan = "!!!!">Bocas Barbecue</li>
+                    </ul>
+                    <h4>Pittier</h4>
+                    <ul id = "restaurant-pittier">
+                        <li data-lat = "8.962917" data-lng = "-82.937742" data-slogan = "!!!!">Restaurante Hnos Lopez</li>
+                    </ul>
+                    <h4>Limoncito</h4>
+                    <ul id = "restaurant-limoncito">
+                        <li data-lat = "8.837132888941603" data-lng = "-83.01378183680059" data-slogan = "!!!!">Restaurante D'nalomas</li>
+                    </ul>
+                </div>
+            </div>
+             <div class = "sidebar-content">
+                <button class="accordion">Hospedaje</button>
+                <div class="panel">
+                    <h4>San Vito</h4>
+                    <ul id = "lodging-sanvito">
+                        <li data-lat = "8.805865" data-lng = "-82.960331" data-slogan = "!!!!">Hospedaje Bambu</li>
+                        <li data-lat = "8.848239" data-lng = "-82.974236" data-slogan = "!!!!">Hospedaje Cuenca de Oro</li>
+                        <li data-lat = "8.813092" data-lng = "-82.967222" data-slogan = "!!!!">Hotel Tres Rios</li>
+                        <li data-lat = "8.820137" data-lng = "-82.969989" data-slogan = "!!!!">Hotel El Ceibo</li>
+                        <li data-lat = "8.819473" data-lng = "-82.971879" data-slogan = "!!!!">Cabinas Coto Brus</li>
+                 </ul>
+                 <h4>Sabalito</h4>
+                    <ul id = "lodging-sabalito">
+                        <li data-lat = "8.810991" data-lng = "-82.908912" data-slogan = "!!!!">Hospedaje Barrantes</li>
+                        <li data-lat = "8.816226" data-lng = "-82.909741" data-slogan = "!!!!">Las casitas Italianas</li>
+                        <li data-lat = "8.819566" data-lng = "-82.911661" data-slogan = "!!!!">Hotel la Riviera</li>
+                 </ul>
+                 <h4>Gutierrez Braun</h4>
+                    <ul id = "lodging-gutierrez-braun">
+                        <li data-lat = "8.877916" data-lng = "-82.951260" data-slogan = "!!!!">Hotel cabañas Siete Colinas</li>
+                 </ul>
+                 <h4>Agua Buena</h4>
+                    <ul id = "lodging-agua-buena">
+                        <li data-lat = "8.766783" data-lng = "-82.938419" data-slogan = "!!!!">Hotel Cotobruseño</li>
+                 </ul>
+                 <h4>Pittier</h4>
+                    <ul id = "lodging-pittier">
+                        <li data-lat = "8.941300" data-lng = "-82.890807" data-slogan = "!!!!">Cabañas La Palmira</li>
+                        <li data-lat = "9.007495" data-lng = "-82.966575" data-slogan = "!!!!">Cabañas Las Brisas de Pittier</li>
+                        <li data-lat = "9.020216" data-lng = "-82.965133" data-slogan = "!!!!">Hospedaje Cerro Pittier</li>
+                        <li data-lat = "9.021126" data-lng = "-82.964411" data-slogan = "!!!!">La cabaña Pittier</li>
+                 </ul>
+                 <h4>Limoncito</h4>
+                    <ul id = "lodging-limoncito">
+                        <li data-lat = "8.849395330944484" data-lng = "-82.97334260736518" data-slogan = "!!!!">Hospedaje MyV</li>
+                 </ul>
+            </div>
+         </div>
+      </div>
+      <div class = "leaflet-sidebar-pane" id = "settings">
+            <h1 class = "leaflet-sidebar-header">
+                Configuración
+                <span class = "leaflet-sidebar-close"><i class ="fa fa-caret-left"></i></span>
+            </h1>
+            <div class = "sidebar-content">
+                <h3>Opciones del mapa</h3>
+                <div>
+                    <input type = "checkbox" id = "showDistricts">Mostrar distritos
+                </div>
+                 <div>
+                    <input type = "checkbox" id = "showTransport">Mostrar transporte publico
+                </div>
+             </div>
+          </div>
+    </div>
+
+    
+        
+    <script src="lib/leaflet-1.9.4/leaflet.js"></script>
+    <!-- Leaflet-sidebar-v2 JS -->
+    <script src="https://unpkg.com/leaflet-sidebar-v2/js/leaflet-sidebar.min.js"></script>
+    
+    <script src="js/script.js"></script>
+
+    
+    </style>
+    <script>
+ </script>
+
+ <script>
+ document.querySelectorAll('.accordion').forEach(function(btn) {
+  var panel = btn.nextElementSibling;
+  var hideTimeout;
+
+  function showPanel() {
+    clearTimeout(hideTimeout);
+    panel.style.display = "block";
+    btn.classList.add('active');
+  }
+
+  function hidePanel() {
+    hideTimeout = setTimeout(function() {
+      panel.style.display = "none";
+      btn.classList.remove('active');
+    }, 200); // Espera 200ms antes de ocultar
+  }
+
+  btn.addEventListener('mouseenter', showPanel);
+  btn.addEventListener('mouseleave', hidePanel);
+  panel.addEventListener('mouseenter', showPanel);
+  panel.addEventListener('mouseleave', hidePanel);
+});
+</script>
+
+</body>
+</html>
